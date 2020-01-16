@@ -84,12 +84,21 @@ const changeTaskStatus = (list, index) => {
         });
 }
 
-const add = async (title) => {
+const add = async (tasksName) => {
     let list = await read(dbPath).catch((error) => { console.log(error) })
-    list.push({
-        title: title,
-        done: false
-    })
+    if(Array.isArray(tasksName)){
+        for (let index = 0; index < tasksName.length; index++) {
+            list.push({
+                title: tasksName[index],
+                done: false
+            })
+        }
+    } else {
+        list.push({
+            title: tasksName,
+            done: false
+        })
+    }
     await write(dbPath, list).catch((error) => { console.log(error) })
 }
 

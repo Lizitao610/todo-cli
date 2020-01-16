@@ -6,10 +6,10 @@ const pkg = require('./package.json')
 program
     .version(pkg.version, '-v --vers', 'output the current version')
 program
-    .command('add')
-    .description('add a task')
-    .action((source, destination) => {
-        api.add(destination.join(' ')).then(() => { console.log('添加成功') }, (error) => { console.log(error) })
+    .command('add <tasksName...>')
+    .description('add tasks, Multiple tasks separated by spaces')
+    .action((tasksName) => {
+        api.add(tasksName).then(() => { console.log('任务添加成功') }, (error) => { console.log(error) })            
     });
 program
     .command('clear')
