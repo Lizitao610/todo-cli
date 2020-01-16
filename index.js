@@ -11,7 +11,7 @@ const createTask = () => {
             {
                 type: 'input',
                 name: 'taskName',
-                message: '请输入任务名称(多个任务使用"|"隔开)'
+                message: '请输入任务名称(多个任务使用"|"隔开)\n'
             }
         ])
         .then(answers => {
@@ -30,7 +30,7 @@ const renameTask = (list, index) => {
             {
                 type: 'input',
                 name: 'taskName',
-                message: '请输入新任务名称'
+                message: '请输入新任务名称\n'
             }
         ])
         .then(async answers => {
@@ -106,7 +106,7 @@ const showAll = async () => {
     let list = await read(dbPath).catch((error) => { console.log(error) })
     let formatList = list.map((item, index) => {
         return {
-            name: `[${item.done ? 'x' : '_'}]-${index + 1} ${item.title}`,
+            name: `${index + 1}. ${item.title} [${item.done ? '已完成' : '未完成'}]`,
             value: index
         }
     })
