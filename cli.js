@@ -6,16 +6,16 @@ const pkg = require('./package.json')
 program
     .version(pkg.version, '-v --vers', 'output the current version')
 program
-    .command('add <tasksName...>')
-    .description('add tasks, Multiple tasks separated by spaces')
-    .action((tasksName) => {
-        api.add(tasksName).then(() => { console.log('任务添加成功') }, (error) => { console.log(error) })            
+    .command('add')
+    .description('add tasks')
+    .action(() => {
+        api.createTask()
     });
 program
     .command('clear')
     .description('clear all tasks')
-    .action((source, destination) => {
-        api.clear().then(() => { console.log('清除成功') }, (error) => { console.log(error) })
+    .action(() => {
+        api.clear().then(() => { console.log('\n清除成功！\n') }, (error) => { console.log(error) })
     });
 
 if (process.argv.length === 2) {
